@@ -112,18 +112,18 @@ fun SecondScreen(navController: NavController, viewModel : MainViewModel) {
     val state = viewModel.array.collectAsState()
 
     val array = state.value
-    var newArray : MutableList<Int> = mutableListOf()
+    val newArray : MutableList<Int> = mutableListOf()
     var zeroCount = 0
 
-    for (i in 0..array.size - 1) {
-        if (array.get(i) == 0) {
+    for (i in 0..<array.size) {
+        if (array[i] == 0) {
             zeroCount += 1
 
         } else {
-            newArray.add(array.get(i))
+            newArray.add(array[i])
         }
         if (i == array.size - 1) {
-            for (i in 0..zeroCount - 1) {
+            for (i in 0..zeroCount) {
                 newArray.add(0)
             }
         }
