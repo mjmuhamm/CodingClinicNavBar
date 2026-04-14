@@ -107,7 +107,6 @@ fun FirstScreen(navController : NavController, viewModel : MainViewModel) {
 }
 
 @Composable
-
 fun SecondScreen(navController: NavController, viewModel : MainViewModel) {
     val state = viewModel.array.collectAsState()
 
@@ -137,6 +136,10 @@ fun SecondScreen(navController: NavController, viewModel : MainViewModel) {
             items(newArray) { item ->
                 Text("$item")
             }
+        }
+
+        Button( onClick = { navController.popBackStack(); viewModel.refreshList() }, modifier = Modifier.padding(15.dp) ) {
+            Text("Go Back")
         }
 
     }

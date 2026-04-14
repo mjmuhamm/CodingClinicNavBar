@@ -16,4 +16,8 @@ class MainViewModel : ViewModel() {
     fun update(number: Int) {
         _array.value += number
     }
+
+    fun refreshList() {
+        _array.value = emptyList()
+    }
 }
