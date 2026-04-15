@@ -67,9 +67,11 @@ fun AppHost(modifier: Modifier, viewModel: MainViewModel) {
 
 @Composable
 fun FirstScreen(navController : NavController, viewModel : MainViewModel) {
-    val array = remember { mutableStateListOf<Int>() }
 
+    val state = viewModel.array.collectAsState()
+    val array = state.value
     var value by remember { mutableStateOf("") }
+    
     Column(Modifier.fillMaxSize().background(Color.White), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         Text("Please enter a number that you would like to place in the array", modifier = Modifier.padding(20.dp))
         TextField(
@@ -79,7 +81,6 @@ fun FirstScreen(navController : NavController, viewModel : MainViewModel) {
         )
 
         Button(onClick = {
-            array.add(value.toInt())
             viewModel.update(value.toInt())
             value = ""
         }, modifier = Modifier.padding(15.dp)) {
